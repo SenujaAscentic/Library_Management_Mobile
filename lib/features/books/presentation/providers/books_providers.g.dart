@@ -130,3 +130,120 @@ final class BookListProvider
 }
 
 String _$bookListHash() => r'650a2e213a1b742ec9e6cc1f934c83a448934568';
+
+@ProviderFor(getBookByIdUseCase)
+final getBookByIdUseCaseProvider = GetBookByIdUseCaseProvider._();
+
+final class GetBookByIdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetBookByIdUseCase,
+          GetBookByIdUseCase,
+          GetBookByIdUseCase
+        >
+    with $Provider<GetBookByIdUseCase> {
+  GetBookByIdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getBookByIdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getBookByIdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetBookByIdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetBookByIdUseCase create(Ref ref) {
+    return getBookByIdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetBookByIdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetBookByIdUseCase>(value),
+    );
+  }
+}
+
+String _$getBookByIdUseCaseHash() =>
+    r'29821b150e6fa655949d08655a6e4048b627cadb';
+
+@ProviderFor(bookDetails)
+final bookDetailsProvider = BookDetailsFamily._();
+
+final class BookDetailsProvider
+    extends $FunctionalProvider<AsyncValue<Book>, Book, FutureOr<Book>>
+    with $FutureModifier<Book>, $FutureProvider<Book> {
+  BookDetailsProvider._({
+    required BookDetailsFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'bookDetailsProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$bookDetailsHash();
+
+  @override
+  String toString() {
+    return r'bookDetailsProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<Book> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<Book> create(Ref ref) {
+    final argument = this.argument as String;
+    return bookDetails(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is BookDetailsProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$bookDetailsHash() => r'fcc9c68383cb5b1b033d4b9b30c1df7931d791c9';
+
+final class BookDetailsFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<Book>, String> {
+  BookDetailsFamily._()
+    : super(
+        retry: null,
+        name: r'bookDetailsProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  BookDetailsProvider call(String id) =>
+      BookDetailsProvider._(argument: id, from: this);
+
+  @override
+  String toString() => r'bookDetailsProvider';
+}

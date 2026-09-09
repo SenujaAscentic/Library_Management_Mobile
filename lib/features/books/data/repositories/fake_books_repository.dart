@@ -13,7 +13,7 @@ class FakeBooksRepository implements BooksRepository {
 
   @override
   Future<List<Book>> getBooks({String? title, int pageNumber = 1, int pageSize = 20}) async {
-    await Future.delayed(const Duration(milliseconds: 400));
+    await Future.delayed(const Duration(milliseconds: 4000));
     return _books.where((b) =>
     title == null || b.title.toLowerCase().contains(title.toLowerCase())).toList();
   }

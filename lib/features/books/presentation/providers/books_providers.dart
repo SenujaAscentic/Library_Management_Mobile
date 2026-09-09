@@ -1,3 +1,6 @@
+
+
+import 'package:library_management_app/features/books/domain/usecases/get_book_by_id_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../data/repositories/fake_books_repository.dart';
 import '../../domain/entities/book.dart';
@@ -17,7 +20,18 @@ GetBooksUseCase getBooksUseCase(Ref ref) {
   return GetBooksUseCase(ref.watch(booksRepositoryProvider));
 }
 
+
 @riverpod
 Future<List<Book>> bookList(Ref ref) {
   return ref.watch(getBooksUseCaseProvider).call();
+}
+
+@riverpod
+GetBookByIdUseCase getBookByIdUseCase(Ref ref){
+  return GetBookByIdUseCase(ref.watch(booksRepositoryProvider));
+}
+
+@riverpod
+Future<Book> bookDetails(Ref ref , String id){
+  return ref.watch(getBookByIdUseCaseProvider).call(id);
 }

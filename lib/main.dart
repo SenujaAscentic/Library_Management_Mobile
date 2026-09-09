@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.light,
       home: const BookListScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
