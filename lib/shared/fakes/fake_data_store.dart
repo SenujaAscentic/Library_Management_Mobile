@@ -2,6 +2,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../features/books/domain/entities/book.dart';
 import '../../features/borrowings/domain/entities/borrowing.dart';
 import '../../features/borrowings/domain/entities/borrowing_status.dart';
+import '../../features/profile/domain/entities/member.dart';
+
 
 part 'fake_data_store.g.dart';
 
@@ -42,6 +44,23 @@ class FakeDataStore {
       status: BorrowingStatus.returned,
     ),
   ];
+  final List<Member> members = [
+    Member(
+      id: 'member-1',
+      fullName: 'Alex Morgan',
+      email: 'alex.morgan@example.com',
+      phoneNumber: '+1 555-0134',
+      registeredDate: DateTime(2024, 3, 12),
+      isActive: true,
+    ),
+  ];
+
+  void updateMember(String memberId, {required String fullName, required String phoneNumber}) {
+    final index = members.indexWhere((m) => m.id == memberId);
+    if (index != -1) {
+      members[index] = members[index].copyWith(fullName: fullName, phoneNumber: phoneNumber);
+    }
+  }
 
   void decrementAvailableCopies(String bookId) {
     final index = books.indexWhere((b) => b.id == bookId);

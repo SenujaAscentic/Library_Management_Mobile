@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../features/books/presentation/screens/book_list_screen.dart';
 import '../../features/borrowings/presentation/screens/my_borrowings_screen.dart';
 import '../widgets/app_shell.dart';
+import '../../features/profile/presentation/screens/profile_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -25,7 +26,7 @@ GoRouter appRouter(Ref ref) {
                 builder: (context, state) => const MyBorrowingsScreen()),
           ]),
           StatefulShellBranch(routes: [
-            GoRoute(path: '/profile', builder: (context, state) => const ProfileStubScreen()),
+            GoRoute(path: '/profile', builder: (context, state) => const ProfileScreen()),
           ]),
         ],
       ),
@@ -33,14 +34,3 @@ GoRouter appRouter(Ref ref) {
   );
 }
 
-class ProfileStubScreen extends StatelessWidget {
-  const ProfileStubScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Profile')),
-      body: const Center(child: Text('Profile — coming soon')),
-    );
-  }
-}
