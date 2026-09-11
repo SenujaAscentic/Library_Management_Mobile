@@ -29,7 +29,7 @@ class BorrowConfirmation extends _$BorrowConfirmation {
 
     if (state?.hasValue == true) {
       // Refresh everything that depends on this data
-      ref.invalidate(bookListProvider);
+      ref.invalidate(filteredBooksProvider);
       ref.invalidate(myBorrowingsProvider);
       ref.invalidate(bookDetailsProvider(bookId));
     }

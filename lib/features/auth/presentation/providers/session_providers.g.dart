@@ -55,3 +55,36 @@ final class SessionRepositoryProvider
 }
 
 String _$sessionRepositoryHash() => r'd292d4c4181dcdf10ebca62a0bcfc48e3edb359a';
+
+@ProviderFor(currentMemberId)
+final currentMemberIdProvider = CurrentMemberIdProvider._();
+
+final class CurrentMemberIdProvider
+    extends $FunctionalProvider<AsyncValue<String>, String, FutureOr<String>>
+    with $FutureModifier<String>, $FutureProvider<String> {
+  CurrentMemberIdProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'currentMemberIdProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$currentMemberIdHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<String> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<String> create(Ref ref) {
+    return currentMemberId(ref);
+  }
+}
+
+String _$currentMemberIdHash() => r'cfc03b33a7eaf14477af1dd5f65e7fe29376073b';

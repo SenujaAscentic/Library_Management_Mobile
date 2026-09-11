@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/book.dart';
+import 'book_cover.dart';
 import '../../../../shared/widgets/status_badge.dart';
 
 class BookCard extends StatelessWidget {
@@ -20,15 +21,8 @@ class BookCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 56,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceContainerHigh,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-              const SizedBox(width: 12),
+              BookCover(imageUrl: book.coverImageUrl, width: 80, height: 116),
+              const SizedBox(width: 14),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,14 +33,23 @@ class BookCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis),
                     const SizedBox(height: 4),
                     Text('${book.author} · ${book.publishedYear}',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant)),
-                    const SizedBox(height: 8),
-                    StatusBadge(
-                      status: book.isAvailable ? BookStatus.available : BookStatus.unavailable,
-                      label: book.isAvailable
-                          ? '${book.availableCopies} of ${book.totalCopies} available'
-                          : 'Unavailable',
+                        style: theme.textTheme.bodyMedium
+                            ?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        StatusBadge(
+                          status: book.isAvailable ? BookStatus.available : BookStatus.unavailable,
+                          label: book.isAvailable
+                              ? '${book.availableCopies} of ${book.totalCopies} available'
+                              : 'Unavailable',
+                        ),
+                        const Spacer(),
+                        Text('Details',
+                            style: theme.textTheme.labelMedium
+                                ?.copyWith(color: theme.colorScheme.primary)),
+                        Icon(Icons.chevron_right, size: 16, color: theme.colorScheme.primary),
+                      ],
                     ),
                   ],
                 ),

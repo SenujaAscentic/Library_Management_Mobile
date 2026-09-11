@@ -93,44 +93,6 @@ final class GetBooksUseCaseProvider
 
 String _$getBooksUseCaseHash() => r'85d095b8a0bfb7f0f3c822436e4a89128609b0d8';
 
-@ProviderFor(bookList)
-final bookListProvider = BookListProvider._();
-
-final class BookListProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<Book>>,
-          List<Book>,
-          FutureOr<List<Book>>
-        >
-    with $FutureModifier<List<Book>>, $FutureProvider<List<Book>> {
-  BookListProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'bookListProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$bookListHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<List<Book>> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<Book>> create(Ref ref) {
-    return bookList(ref);
-  }
-}
-
-String _$bookListHash() => r'650a2e213a1b742ec9e6cc1f934c83a448934568';
-
 @ProviderFor(getBookByIdUseCase)
 final getBookByIdUseCaseProvider = GetBookByIdUseCaseProvider._();
 
@@ -247,3 +209,93 @@ final class BookDetailsFamily extends $Family
   @override
   String toString() => r'bookDetailsProvider';
 }
+
+@ProviderFor(BookFilters)
+final bookFiltersProvider = BookFiltersProvider._();
+
+final class BookFiltersProvider
+    extends $NotifierProvider<BookFilters, BookListFilters> {
+  BookFiltersProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'bookFiltersProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$bookFiltersHash();
+
+  @$internal
+  @override
+  BookFilters create() => BookFilters();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(BookListFilters value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<BookListFilters>(value),
+    );
+  }
+}
+
+String _$bookFiltersHash() => r'c1759416982c824ed3053375f11a8358bf5406e9';
+
+abstract class _$BookFilters extends $Notifier<BookListFilters> {
+  BookListFilters build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<BookListFilters, BookListFilters>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<BookListFilters, BookListFilters>,
+              BookListFilters,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(filteredBooks)
+final filteredBooksProvider = FilteredBooksProvider._();
+
+final class FilteredBooksProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Book>>,
+          List<Book>,
+          FutureOr<List<Book>>
+        >
+    with $FutureModifier<List<Book>>, $FutureProvider<List<Book>> {
+  FilteredBooksProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'filteredBooksProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$filteredBooksHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Book>> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Book>> create(Ref ref) {
+    return filteredBooks(ref);
+  }
+}
+
+String _$filteredBooksHash() => r'b469cabbae5b1804a2dbd43e55b4d7d78ac71e6f';

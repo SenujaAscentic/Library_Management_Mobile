@@ -15,6 +15,9 @@ class FakeBooksRepository implements BooksRepository {
     int pageSize = 20,
   }) async {
     await Future.delayed(const Duration(milliseconds: 400));
+    if (_store.simulateNetworkError) {
+      throw Exception('Simulated network failure');
+    }
     var results = _store.books.where((b) {
       if (title != null && !b.title.toLowerCase().contains(title.toLowerCase())) return false;
       if (author != null && !b.author.toLowerCase().contains(author.toLowerCase())) return false;

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Book {
 
- String get id; String get title; String get author; String get isbn; int get publishedYear; int get totalCopies; int get availableCopies;
+ String get id; String get title; String get author; String get isbn; int get publishedYear; int get totalCopies; int get availableCopies; String? get coverImageUrl;
 /// Create a copy of Book
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $BookCopyWith<Book> get copyWith => _$BookCopyWithImpl<Book>(this as Book, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Book&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.author, author) || other.author == author)&&(identical(other.isbn, isbn) || other.isbn == isbn)&&(identical(other.publishedYear, publishedYear) || other.publishedYear == publishedYear)&&(identical(other.totalCopies, totalCopies) || other.totalCopies == totalCopies)&&(identical(other.availableCopies, availableCopies) || other.availableCopies == availableCopies));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Book&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.author, author) || other.author == author)&&(identical(other.isbn, isbn) || other.isbn == isbn)&&(identical(other.publishedYear, publishedYear) || other.publishedYear == publishedYear)&&(identical(other.totalCopies, totalCopies) || other.totalCopies == totalCopies)&&(identical(other.availableCopies, availableCopies) || other.availableCopies == availableCopies)&&(identical(other.coverImageUrl, coverImageUrl) || other.coverImageUrl == coverImageUrl));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,author,isbn,publishedYear,totalCopies,availableCopies);
+int get hashCode => Object.hash(runtimeType,id,title,author,isbn,publishedYear,totalCopies,availableCopies,coverImageUrl);
 
 @override
 String toString() {
-  return 'Book(id: $id, title: $title, author: $author, isbn: $isbn, publishedYear: $publishedYear, totalCopies: $totalCopies, availableCopies: $availableCopies)';
+  return 'Book(id: $id, title: $title, author: $author, isbn: $isbn, publishedYear: $publishedYear, totalCopies: $totalCopies, availableCopies: $availableCopies, coverImageUrl: $coverImageUrl)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $BookCopyWith<$Res>  {
   factory $BookCopyWith(Book value, $Res Function(Book) _then) = _$BookCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String author, String isbn, int publishedYear, int totalCopies, int availableCopies
+ String id, String title, String author, String isbn, int publishedYear, int totalCopies, int availableCopies, String? coverImageUrl
 });
 
 
@@ -62,7 +62,7 @@ class _$BookCopyWithImpl<$Res>
 
 /// Create a copy of Book
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? author = null,Object? isbn = null,Object? publishedYear = null,Object? totalCopies = null,Object? availableCopies = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? author = null,Object? isbn = null,Object? publishedYear = null,Object? totalCopies = null,Object? availableCopies = null,Object? coverImageUrl = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,8 @@ as String,isbn: null == isbn ? _self.isbn : isbn // ignore: cast_nullable_to_non
 as String,publishedYear: null == publishedYear ? _self.publishedYear : publishedYear // ignore: cast_nullable_to_non_nullable
 as int,totalCopies: null == totalCopies ? _self.totalCopies : totalCopies // ignore: cast_nullable_to_non_nullable
 as int,availableCopies: null == availableCopies ? _self.availableCopies : availableCopies // ignore: cast_nullable_to_non_nullable
-as int,
+as int,coverImageUrl: freezed == coverImageUrl ? _self.coverImageUrl : coverImageUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -156,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String author,  String isbn,  int publishedYear,  int totalCopies,  int availableCopies)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String author,  String isbn,  int publishedYear,  int totalCopies,  int availableCopies,  String? coverImageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Book() when $default != null:
-return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear,_that.totalCopies,_that.availableCopies);case _:
+return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear,_that.totalCopies,_that.availableCopies,_that.coverImageUrl);case _:
   return orElse();
 
 }
@@ -177,10 +178,10 @@ return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String author,  String isbn,  int publishedYear,  int totalCopies,  int availableCopies)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String author,  String isbn,  int publishedYear,  int totalCopies,  int availableCopies,  String? coverImageUrl)  $default,) {final _that = this;
 switch (_that) {
 case _Book():
-return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear,_that.totalCopies,_that.availableCopies);case _:
+return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear,_that.totalCopies,_that.availableCopies,_that.coverImageUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +198,10 @@ return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String author,  String isbn,  int publishedYear,  int totalCopies,  int availableCopies)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String author,  String isbn,  int publishedYear,  int totalCopies,  int availableCopies,  String? coverImageUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _Book() when $default != null:
-return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear,_that.totalCopies,_that.availableCopies);case _:
+return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear,_that.totalCopies,_that.availableCopies,_that.coverImageUrl);case _:
   return null;
 
 }
@@ -212,7 +213,7 @@ return $default(_that.id,_that.title,_that.author,_that.isbn,_that.publishedYear
 
 
 class _Book extends Book {
-  const _Book({required this.id, required this.title, required this.author, required this.isbn, required this.publishedYear, required this.totalCopies, required this.availableCopies}): super._();
+  const _Book({required this.id, required this.title, required this.author, required this.isbn, required this.publishedYear, required this.totalCopies, required this.availableCopies, this.coverImageUrl}): super._();
   
 
 @override final  String id;
@@ -222,6 +223,7 @@ class _Book extends Book {
 @override final  int publishedYear;
 @override final  int totalCopies;
 @override final  int availableCopies;
+@override final  String? coverImageUrl;
 
 /// Create a copy of Book
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +235,16 @@ _$BookCopyWith<_Book> get copyWith => __$BookCopyWithImpl<_Book>(this, _$identit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Book&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.author, author) || other.author == author)&&(identical(other.isbn, isbn) || other.isbn == isbn)&&(identical(other.publishedYear, publishedYear) || other.publishedYear == publishedYear)&&(identical(other.totalCopies, totalCopies) || other.totalCopies == totalCopies)&&(identical(other.availableCopies, availableCopies) || other.availableCopies == availableCopies));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Book&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.author, author) || other.author == author)&&(identical(other.isbn, isbn) || other.isbn == isbn)&&(identical(other.publishedYear, publishedYear) || other.publishedYear == publishedYear)&&(identical(other.totalCopies, totalCopies) || other.totalCopies == totalCopies)&&(identical(other.availableCopies, availableCopies) || other.availableCopies == availableCopies)&&(identical(other.coverImageUrl, coverImageUrl) || other.coverImageUrl == coverImageUrl));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,title,author,isbn,publishedYear,totalCopies,availableCopies);
+int get hashCode => Object.hash(runtimeType,id,title,author,isbn,publishedYear,totalCopies,availableCopies,coverImageUrl);
 
 @override
 String toString() {
-  return 'Book(id: $id, title: $title, author: $author, isbn: $isbn, publishedYear: $publishedYear, totalCopies: $totalCopies, availableCopies: $availableCopies)';
+  return 'Book(id: $id, title: $title, author: $author, isbn: $isbn, publishedYear: $publishedYear, totalCopies: $totalCopies, availableCopies: $availableCopies, coverImageUrl: $coverImageUrl)';
 }
 
 
@@ -253,7 +255,7 @@ abstract mixin class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
   factory _$BookCopyWith(_Book value, $Res Function(_Book) _then) = __$BookCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String author, String isbn, int publishedYear, int totalCopies, int availableCopies
+ String id, String title, String author, String isbn, int publishedYear, int totalCopies, int availableCopies, String? coverImageUrl
 });
 
 
@@ -270,7 +272,7 @@ class __$BookCopyWithImpl<$Res>
 
 /// Create a copy of Book
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? author = null,Object? isbn = null,Object? publishedYear = null,Object? totalCopies = null,Object? availableCopies = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? author = null,Object? isbn = null,Object? publishedYear = null,Object? totalCopies = null,Object? availableCopies = null,Object? coverImageUrl = freezed,}) {
   return _then(_Book(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -279,7 +281,8 @@ as String,isbn: null == isbn ? _self.isbn : isbn // ignore: cast_nullable_to_non
 as String,publishedYear: null == publishedYear ? _self.publishedYear : publishedYear // ignore: cast_nullable_to_non_nullable
 as int,totalCopies: null == totalCopies ? _self.totalCopies : totalCopies // ignore: cast_nullable_to_non_nullable
 as int,availableCopies: null == availableCopies ? _self.availableCopies : availableCopies // ignore: cast_nullable_to_non_nullable
-as int,
+as int,coverImageUrl: freezed == coverImageUrl ? _self.coverImageUrl : coverImageUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

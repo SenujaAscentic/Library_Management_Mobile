@@ -9,3 +9,7 @@ SessionRepository sessionRepository(Ref ref) {
   // TODO: swap to a real implementation once backend is ready.
   return FakeSessionRepository();
 }
+@riverpod
+Future<String> currentMemberId(Ref ref) {
+  return ref.watch(sessionRepositoryProvider).getCurrentMemberId();
+}

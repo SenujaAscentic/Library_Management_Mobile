@@ -14,13 +14,17 @@ part 'fake_data_store.g.dart';
 /// equivalent in the real Dio-backed repositories; it's purely a
 /// fake-data wiring concern.
 class FakeDataStore {
+  bool simulateNetworkError = false;
   final List<Book> books = [
     const Book(id: '1', title: 'Clean Code', author: 'Robert C. Martin',
-        isbn: '9780132350884', publishedYear: 2008, totalCopies: 5, availableCopies: 3),
+        isbn: '9780132350884', publishedYear: 2008, totalCopies: 5, availableCopies: 3,
+        coverImageUrl: 'https://picsum.photos/seed/book1/200/300'),
     const Book(id: '2', title: 'The Pragmatic Programmer', author: 'David Thomas',
-        isbn: '9780135957059', publishedYear: 2019, totalCopies: 4, availableCopies: 0),
+        isbn: '9780135957059', publishedYear: 2019, totalCopies: 4, availableCopies: 0,
+        coverImageUrl: 'https://picsum.photos/seed/book2/200/300'),
     const Book(id: '3', title: 'Design Patterns', author: 'Erich Gamma',
-        isbn: '9780201633610', publishedYear: 1994, totalCopies: 2, availableCopies: 2),
+        isbn: '9780201633610', publishedYear: 1994, totalCopies: 2, availableCopies: 2,
+        coverImageUrl: 'https://picsum.photos/seed/book3/200/300'),
   ];
 
   final List<Borrowing> borrowings = [

@@ -12,10 +12,11 @@ abstract class Book with _$Book {
     required int publishedYear,
     required int totalCopies,
     required int availableCopies,
+    String? coverImageUrl,
   }) = _Book;
 
   const Book._();
 
   bool get isAvailable => availableCopies > 0;
-  //equatable
+
 }
