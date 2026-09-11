@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:library_management_app/features/books/presentation/screens/book_details_screen.dart';
-import '../../../../shared/widgets/book_card.dart';
+import '../widgets/book_card.dart';
 import '../providers/books_providers.dart';
 import 'book_details_screen.dart';
 

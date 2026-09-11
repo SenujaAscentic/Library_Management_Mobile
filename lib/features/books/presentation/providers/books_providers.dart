@@ -1,6 +1,7 @@
 
 
 import 'package:library_management_app/features/books/domain/usecases/get_book_by_id_usecase.dart';
+import 'package:library_management_app/shared/fakes/fake_data_store.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../data/repositories/fake_books_repository.dart';
 import '../../domain/entities/book.dart';
@@ -9,10 +10,10 @@ import '../../domain/usecases/get_books_usecase.dart';
 
 part 'books_providers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 BooksRepository booksRepository(Ref ref) {
   // Fake for now — swap to a real Dio-backed implementation later.
-  return FakeBooksRepository();
+  return FakeBooksRepository(ref.watch(fakeDataStoreProvider));
 }
 
 @riverpod

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../shared/widgets/status_badge.dart';
 import '../providers/books_providers.dart';
+import '../../../borrowings/presentation/screens/borrow_confirmation_sheet.dart';
 
 class BookDetailsScreen extends ConsumerWidget {
   const BookDetailsScreen({super.key, required this.bookId});
@@ -57,14 +58,7 @@ class BookDetailsScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 24),
               FilledButton(
-                onPressed: book.isAvailable
-                    ? () {
-                  // TODO: wire to Borrow Confirmation once Borrowings feature exists
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Borrowing not implemented yet')),
-                  );
-                }
-                    : null, // null onPressed = disabled button, per M3 convention
+                onPressed: book.isAvailable ? () => BorrowConfirmationSheet.show(context, book) : null,// null onPressed = disabled button, per M3 convention
                 child: const Text('Borrow this Book'),
               ),
               if (!book.isAvailable) ...[

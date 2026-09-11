@@ -22,7 +22,7 @@ final class BooksRepositoryProvider
         argument: null,
         retry: null,
         name: r'booksRepositoryProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -49,7 +49,7 @@ final class BooksRepositoryProvider
   }
 }
 
-String _$booksRepositoryHash() => r'd5a6d3e29d3a674969cea68e82dae8b653a8dd25';
+String _$booksRepositoryHash() => r'f60685e681971256f55c2e6e0a46ca591a931dd3';
 
 @ProviderFor(getBooksUseCase)
 final getBooksUseCaseProvider = GetBooksUseCaseProvider._();

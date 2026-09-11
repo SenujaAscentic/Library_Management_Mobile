@@ -1,0 +1,1 @@
+enum BorrowingStatus { borrowed, returned, overdue }

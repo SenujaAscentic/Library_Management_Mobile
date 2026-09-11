@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../features/books/domain/entities/book.dart';
-import 'status_badge.dart';
+import '../../domain/entities/book.dart';
+import '../../../../shared/widgets/status_badge.dart';
 
 class BookCard extends StatelessWidget {
   const BookCard({super.key, required this.book, required this.onTap});
