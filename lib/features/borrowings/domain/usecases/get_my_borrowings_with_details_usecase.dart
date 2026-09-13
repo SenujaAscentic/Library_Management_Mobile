@@ -16,6 +16,7 @@ class GetMyBorrowingsWithDetailsUseCase {
         borrowing: borrowing,
         bookTitle: book.title,
         bookAuthor: book.author,
+        bookCoverUrl: book.coverImageUrl,
       );
     }));
   }

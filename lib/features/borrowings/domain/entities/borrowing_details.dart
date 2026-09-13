@@ -13,5 +13,6 @@ abstract class BorrowingDetails with _$BorrowingDetails {
     required Borrowing borrowing,
     required String bookTitle,
     required String bookAuthor,
+    String? bookCoverUrl,
   }) = _BorrowingDetails;
 }

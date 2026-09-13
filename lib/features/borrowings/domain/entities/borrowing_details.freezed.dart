@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BorrowingDetails {
 
- Borrowing get borrowing; String get bookTitle; String get bookAuthor;
+ Borrowing get borrowing; String get bookTitle; String get bookAuthor; String? get bookCoverUrl;
 /// Create a copy of BorrowingDetails
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $BorrowingDetailsCopyWith<BorrowingDetails> get copyWith => _$BorrowingDetailsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BorrowingDetails&&(identical(other.borrowing, borrowing) || other.borrowing == borrowing)&&(identical(other.bookTitle, bookTitle) || other.bookTitle == bookTitle)&&(identical(other.bookAuthor, bookAuthor) || other.bookAuthor == bookAuthor));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BorrowingDetails&&(identical(other.borrowing, borrowing) || other.borrowing == borrowing)&&(identical(other.bookTitle, bookTitle) || other.bookTitle == bookTitle)&&(identical(other.bookAuthor, bookAuthor) || other.bookAuthor == bookAuthor)&&(identical(other.bookCoverUrl, bookCoverUrl) || other.bookCoverUrl == bookCoverUrl));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,borrowing,bookTitle,bookAuthor);
+int get hashCode => Object.hash(runtimeType,borrowing,bookTitle,bookAuthor,bookCoverUrl);
 
 @override
 String toString() {
-  return 'BorrowingDetails(borrowing: $borrowing, bookTitle: $bookTitle, bookAuthor: $bookAuthor)';
+  return 'BorrowingDetails(borrowing: $borrowing, bookTitle: $bookTitle, bookAuthor: $bookAuthor, bookCoverUrl: $bookCoverUrl)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $BorrowingDetailsCopyWith<$Res>  {
   factory $BorrowingDetailsCopyWith(BorrowingDetails value, $Res Function(BorrowingDetails) _then) = _$BorrowingDetailsCopyWithImpl;
 @useResult
 $Res call({
- Borrowing borrowing, String bookTitle, String bookAuthor
+ Borrowing borrowing, String bookTitle, String bookAuthor, String? bookCoverUrl
 });
 
 
@@ -62,12 +62,13 @@ class _$BorrowingDetailsCopyWithImpl<$Res>
 
 /// Create a copy of BorrowingDetails
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? borrowing = null,Object? bookTitle = null,Object? bookAuthor = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? borrowing = null,Object? bookTitle = null,Object? bookAuthor = null,Object? bookCoverUrl = freezed,}) {
   return _then(_self.copyWith(
 borrowing: null == borrowing ? _self.borrowing : borrowing // ignore: cast_nullable_to_non_nullable
 as Borrowing,bookTitle: null == bookTitle ? _self.bookTitle : bookTitle // ignore: cast_nullable_to_non_nullable
 as String,bookAuthor: null == bookAuthor ? _self.bookAuthor : bookAuthor // ignore: cast_nullable_to_non_nullable
-as String,
+as String,bookCoverUrl: freezed == bookCoverUrl ? _self.bookCoverUrl : bookCoverUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of BorrowingDetails
@@ -161,10 +162,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Borrowing borrowing,  String bookTitle,  String bookAuthor)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Borrowing borrowing,  String bookTitle,  String bookAuthor,  String? bookCoverUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BorrowingDetails() when $default != null:
-return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor);case _:
+return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor,_that.bookCoverUrl);case _:
   return orElse();
 
 }
@@ -182,10 +183,10 @@ return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Borrowing borrowing,  String bookTitle,  String bookAuthor)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Borrowing borrowing,  String bookTitle,  String bookAuthor,  String? bookCoverUrl)  $default,) {final _that = this;
 switch (_that) {
 case _BorrowingDetails():
-return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor);case _:
+return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor,_that.bookCoverUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -202,10 +203,10 @@ return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Borrowing borrowing,  String bookTitle,  String bookAuthor)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Borrowing borrowing,  String bookTitle,  String bookAuthor,  String? bookCoverUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _BorrowingDetails() when $default != null:
-return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor);case _:
+return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor,_that.bookCoverUrl);case _:
   return null;
 
 }
@@ -217,12 +218,13 @@ return $default(_that.borrowing,_that.bookTitle,_that.bookAuthor);case _:
 
 
 class _BorrowingDetails implements BorrowingDetails {
-  const _BorrowingDetails({required this.borrowing, required this.bookTitle, required this.bookAuthor});
+  const _BorrowingDetails({required this.borrowing, required this.bookTitle, required this.bookAuthor, this.bookCoverUrl});
   
 
 @override final  Borrowing borrowing;
 @override final  String bookTitle;
 @override final  String bookAuthor;
+@override final  String? bookCoverUrl;
 
 /// Create a copy of BorrowingDetails
 /// with the given fields replaced by the non-null parameter values.
@@ -234,16 +236,16 @@ _$BorrowingDetailsCopyWith<_BorrowingDetails> get copyWith => __$BorrowingDetail
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BorrowingDetails&&(identical(other.borrowing, borrowing) || other.borrowing == borrowing)&&(identical(other.bookTitle, bookTitle) || other.bookTitle == bookTitle)&&(identical(other.bookAuthor, bookAuthor) || other.bookAuthor == bookAuthor));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BorrowingDetails&&(identical(other.borrowing, borrowing) || other.borrowing == borrowing)&&(identical(other.bookTitle, bookTitle) || other.bookTitle == bookTitle)&&(identical(other.bookAuthor, bookAuthor) || other.bookAuthor == bookAuthor)&&(identical(other.bookCoverUrl, bookCoverUrl) || other.bookCoverUrl == bookCoverUrl));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,borrowing,bookTitle,bookAuthor);
+int get hashCode => Object.hash(runtimeType,borrowing,bookTitle,bookAuthor,bookCoverUrl);
 
 @override
 String toString() {
-  return 'BorrowingDetails(borrowing: $borrowing, bookTitle: $bookTitle, bookAuthor: $bookAuthor)';
+  return 'BorrowingDetails(borrowing: $borrowing, bookTitle: $bookTitle, bookAuthor: $bookAuthor, bookCoverUrl: $bookCoverUrl)';
 }
 
 
@@ -254,7 +256,7 @@ abstract mixin class _$BorrowingDetailsCopyWith<$Res> implements $BorrowingDetai
   factory _$BorrowingDetailsCopyWith(_BorrowingDetails value, $Res Function(_BorrowingDetails) _then) = __$BorrowingDetailsCopyWithImpl;
 @override @useResult
 $Res call({
- Borrowing borrowing, String bookTitle, String bookAuthor
+ Borrowing borrowing, String bookTitle, String bookAuthor, String? bookCoverUrl
 });
 
 
@@ -271,12 +273,13 @@ class __$BorrowingDetailsCopyWithImpl<$Res>
 
 /// Create a copy of BorrowingDetails
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? borrowing = null,Object? bookTitle = null,Object? bookAuthor = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? borrowing = null,Object? bookTitle = null,Object? bookAuthor = null,Object? bookCoverUrl = freezed,}) {
   return _then(_BorrowingDetails(
 borrowing: null == borrowing ? _self.borrowing : borrowing // ignore: cast_nullable_to_non_nullable
 as Borrowing,bookTitle: null == bookTitle ? _self.bookTitle : bookTitle // ignore: cast_nullable_to_non_nullable
 as String,bookAuthor: null == bookAuthor ? _self.bookAuthor : bookAuthor // ignore: cast_nullable_to_non_nullable
-as String,
+as String,bookCoverUrl: freezed == bookCoverUrl ? _self.bookCoverUrl : bookCoverUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
