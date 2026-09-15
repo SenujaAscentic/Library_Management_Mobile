@@ -67,7 +67,7 @@ final class BorrowConfirmationProvider
         argument: null,
         retry: null,
         name: r'borrowConfirmationProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -89,7 +89,7 @@ final class BorrowConfirmationProvider
 }
 
 String _$borrowConfirmationHash() =>
-    r'8e494f6d7aaf3c52d120581ba861b5de851c04a4';
+    r'00ba73102c9237abdc773fc8b514de6108aa6bf2';
 
 abstract class _$BorrowConfirmation extends $Notifier<AsyncValue<Borrowing>?> {
   AsyncValue<Borrowing>? build();

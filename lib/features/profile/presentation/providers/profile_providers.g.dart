@@ -163,7 +163,7 @@ final class ProfileProvider
         argument: null,
         retry: null,
         name: r'profileProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -176,7 +176,7 @@ final class ProfileProvider
   Profile create() => Profile();
 }
 
-String _$profileHash() => r'ff89b2b9d28968ae9631e1214bdca1e33e04dc18';
+String _$profileHash() => r'b4b9bfe2b03fc3570bb035957446c055e9f8af71';
 
 abstract class _$Profile extends $AsyncNotifier<ProfileState> {
   FutureOr<ProfileState> build();

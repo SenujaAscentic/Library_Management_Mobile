@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter/foundation.dart';
 import '../../../auth/presentation/providers/session_providers.dart';
 import '../../../books/presentation/providers/books_providers.dart';
 import '../../domain/usecases/borrow_book_usecase.dart';
@@ -16,19 +17,21 @@ BorrowBookUseCase borrowBookUseCase(Ref ref) {
   );
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class BorrowConfirmation extends _$BorrowConfirmation {
   @override
-  AsyncValue<Borrowing>? build() => null; // null = Default state, not yet attempted
+  AsyncValue<Borrowing>? build() => null;
 
   Future<void> confirm(String bookId) async {
     state = const AsyncLoading();
     final memberId = await ref.read(sessionRepositoryProvider).getCurrentMemberId();
-    state = await AsyncValue.guard(
-            () => ref.read(borrowBookUseCaseProvider).call(memberId: memberId, bookId: bookId));
 
-    if (state?.hasValue == true) {
-      // Refresh everything that depends on this data
+    final result = await AsyncValue.guard<Borrowing>(
+          () => ref.read(borrowBookUseCaseProvider).call(memberId: memberId, bookId: bookId),
+    );
+    state = result;
+
+    if (result.hasValue) {
       ref.invalidate(filteredBooksProvider);
       ref.invalidate(myBorrowingsProvider);
       ref.invalidate(bookDetailsProvider(bookId));

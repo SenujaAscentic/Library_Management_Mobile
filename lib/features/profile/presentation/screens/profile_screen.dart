@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import '../../domain/entities/member.dart';
 import '../providers/profile_providers.dart';
 import '../providers/profile_state.dart';
+import '../../../auth/presentation/providers/auth_providers.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -132,10 +134,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
           const SizedBox(height: 8),
           TextButton(
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Logout not implemented yet (auth pending)')),
-              );
+            onPressed: () async {
+              await ref.read(logoutUseCaseProvider).call();
+              if (context.mounted) context.go('/login');
             },
             child: const Text('Logout'),
           ),

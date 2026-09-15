@@ -9,6 +9,7 @@ import '../../domain/usecases/get_my_borrowings_usecase.dart';
 import '../../domain/usecases/get_my_borrowings_with_details_usecase.dart';
 import '../../domain/usecases/return_borrowing_usecase.dart';
 import '../../../../shared/fakes/fake_data_store.dart';
+import '../../../books/presentation/providers/books_providers.dart';
 
 part 'borrowings_providers.g.dart';
 
@@ -35,7 +36,7 @@ GetMyBorrowingsWithDetailsUseCase getMyBorrowingsWithDetailsUseCase(Ref ref) {
   );
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class MyBorrowings extends _$MyBorrowings {
   @override
   Future<List<BorrowingDetails>> build() async {
@@ -44,8 +45,9 @@ class MyBorrowings extends _$MyBorrowings {
   }
 
   Future<void> returnBorrowing(String borrowingId) async {
-    await ref.read(returnBorrowingUseCaseProvider).call(borrowingId);
+    final borrowing = await ref.read(returnBorrowingUseCaseProvider).call(borrowingId);
     ref.invalidateSelf();
-    // await future;
+    ref.invalidate(filteredBooksProvider);
+    ref.invalidate(bookDetailsProvider(borrowing.bookId));
   }
 }

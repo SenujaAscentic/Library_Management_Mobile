@@ -24,7 +24,7 @@ UpdateProfileUseCase updateProfileUseCase(Ref ref) {
   return UpdateProfileUseCase(ref.watch(profileRepositoryProvider));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
  class Profile extends _$Profile {
   @override
   Future<ProfileState> build() async {

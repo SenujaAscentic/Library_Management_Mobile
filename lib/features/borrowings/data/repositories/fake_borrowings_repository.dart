@@ -23,6 +23,7 @@ class FakeBorrowingsRepository implements BorrowingsRepository {
       returnedDate: DateTime.now(),
     );
     _store.borrowings[index] = updated;
+    _store.incrementAvailableCopies(updated.bookId);
     return updated;
   }
 

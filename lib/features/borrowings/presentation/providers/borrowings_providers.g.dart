@@ -216,7 +216,7 @@ final class MyBorrowingsProvider
         argument: null,
         retry: null,
         name: r'myBorrowingsProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -229,7 +229,7 @@ final class MyBorrowingsProvider
   MyBorrowings create() => MyBorrowings();
 }
 
-String _$myBorrowingsHash() => r'ad7dfa8e917918b38d566caa7328ebb365238e56';
+String _$myBorrowingsHash() => r'22757001e86958b81ed6078b4154aa5226e905f0';
 
 abstract class _$MyBorrowings extends $AsyncNotifier<List<BorrowingDetails>> {
   FutureOr<List<BorrowingDetails>> build();

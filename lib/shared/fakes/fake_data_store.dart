@@ -72,6 +72,15 @@ class FakeDataStore {
       books[index] = books[index].copyWith(availableCopies: books[index].availableCopies - 1);
     }
   }
+  void incrementAvailableCopies(String bookId) {
+    final index = books.indexWhere((b) => b.id == bookId);
+    if (index != -1) {
+      final book = books[index];
+      if (book.availableCopies < book.totalCopies) {
+        books[index] = book.copyWith(availableCopies: book.availableCopies + 1);
+      }
+    }
+  }
 }
 
 @Riverpod(keepAlive: true)

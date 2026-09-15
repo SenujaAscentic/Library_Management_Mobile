@@ -26,7 +26,7 @@ final class SessionRepositoryProvider
         argument: null,
         retry: null,
         name: r'sessionRepositoryProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -54,7 +54,7 @@ final class SessionRepositoryProvider
   }
 }
 
-String _$sessionRepositoryHash() => r'd292d4c4181dcdf10ebca62a0bcfc48e3edb359a';
+String _$sessionRepositoryHash() => r'1a054ba5043ea7c26d2e29e3e7b2b783ac6ffa68';
 
 @ProviderFor(currentMemberId)
 final currentMemberIdProvider = CurrentMemberIdProvider._();

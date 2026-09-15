@@ -12,8 +12,25 @@ class MyBorrowingsScreen extends ConsumerStatefulWidget {
   ConsumerState<MyBorrowingsScreen> createState() => _MyBorrowingsScreenState();
 }
 
-class _MyBorrowingsScreenState extends ConsumerState<MyBorrowingsScreen> {
-  int _tabIndex = 0;
+class _MyBorrowingsScreenState extends ConsumerState<MyBorrowingsScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(() {
+      // Rebuild so the pill row's highlight follows swipes, not just taps.
+      if (!_tabController.indexIsChanging) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +82,6 @@ class _MyBorrowingsScreenState extends ConsumerState<MyBorrowingsScreen> {
           final returned =
           all.where((d) => d.borrowing.status == BorrowingStatus.returned).toList();
 
-          final lists = [all, active, returned];
-
           return Column(
             children: [
               Padding(
@@ -86,7 +101,16 @@ class _MyBorrowingsScreenState extends ConsumerState<MyBorrowingsScreen> {
                   ),
                 ),
               ),
-              Expanded(child: _list(lists[_tabIndex], theme)),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    _list(all, theme),
+                    _list(active, theme),
+                    _list(returned, theme),
+                  ],
+                ),
+              ),
             ],
           );
         },
@@ -95,10 +119,10 @@ class _MyBorrowingsScreenState extends ConsumerState<MyBorrowingsScreen> {
   }
 
   Widget _segment(ThemeData theme, String label, int count, int index) {
-    final selected = _tabIndex == index;
+    final selected = _tabController.index == index;
     return Expanded(
       child: GestureDetector(
-        onTap: () => setState(() => _tabIndex = index),
+        onTap: () => _tabController.animateTo(index),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
