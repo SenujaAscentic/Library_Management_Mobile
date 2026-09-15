@@ -13,8 +13,8 @@ class FakeAuthRepository implements AuthRepository {
 
   // Deliberately short for testing the refresh cycle — increase once
   // you're done observing it.
-  static const _accessTtl = Duration(seconds: 30);
-  static const _refreshTtl = Duration(seconds: 500);
+  static const _accessTtl = Duration(seconds: 3600);
+  static const _refreshTtl = Duration(seconds: 7200);
 
   String _generateToken(String prefix) => '$prefix-${DateTime.now().microsecondsSinceEpoch}';
 

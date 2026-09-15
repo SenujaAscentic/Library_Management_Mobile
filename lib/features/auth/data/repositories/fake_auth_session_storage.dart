@@ -13,5 +13,5 @@ class FakeAuthSessionStorage {
   Future<void> markOnboardingSeen() => _storage.write(key: _onboardingSeenKey, value: 'true');
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 FakeAuthSessionStorage fakeAuthSessionStorage(Ref ref) => FakeAuthSessionStorage();

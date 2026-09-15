@@ -26,7 +26,7 @@ final class FakeAuthSessionStorageProvider
         argument: null,
         retry: null,
         name: r'fakeAuthSessionStorageProvider',
-        isAutoDispose: false,
+        isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -55,4 +55,4 @@ final class FakeAuthSessionStorageProvider
 }
 
 String _$fakeAuthSessionStorageHash() =>
-    r'2b3fe529810cba56f1062ce69227a953445bc57d';
+    r'f5242877f9a04c568896e596a0674a48c9d0cbf9';

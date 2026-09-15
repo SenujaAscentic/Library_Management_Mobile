@@ -26,7 +26,7 @@ final class ProfileRepositoryProvider
         argument: null,
         retry: null,
         name: r'profileRepositoryProvider',
-        isAutoDispose: false,
+        isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -54,7 +54,7 @@ final class ProfileRepositoryProvider
   }
 }
 
-String _$profileRepositoryHash() => r'14bf91f6c4a0bf21731a355d41b9cd7f3b051cb1';
+String _$profileRepositoryHash() => r'99b6a2e5a70bab296ec0bede3aeb932fad88edbc';
 
 @ProviderFor(getOwnProfileUseCase)
 final getOwnProfileUseCaseProvider = GetOwnProfileUseCaseProvider._();

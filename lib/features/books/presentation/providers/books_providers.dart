@@ -9,7 +9,7 @@ import 'book_list_filters.dart';
 
 part 'books_providers.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 BooksRepository booksRepository(Ref ref) {
   return FakeBooksRepository(ref.watch(fakeDataStoreProvider));
 }

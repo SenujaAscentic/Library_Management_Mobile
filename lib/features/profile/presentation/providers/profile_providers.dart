@@ -9,7 +9,7 @@ import 'profile_state.dart';
 
 part 'profile_providers.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 ProfileRepository profileRepository(Ref ref) {
   return FakeProfileRepository(ref.watch(fakeDataStoreProvider));
 }

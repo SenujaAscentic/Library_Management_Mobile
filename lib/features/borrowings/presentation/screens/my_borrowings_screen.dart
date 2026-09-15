@@ -4,7 +4,7 @@ import '../widgets/borrowing_card.dart';
 import '../../domain/entities/borrowing_details.dart';
 import '../../domain/entities/borrowing_status.dart';
 import '../providers/borrowings_providers.dart';
-
+import 'package:go_router/go_router.dart';
 class MyBorrowingsScreen extends ConsumerStatefulWidget {
   const MyBorrowingsScreen({super.key});
 
@@ -21,7 +21,7 @@ class _MyBorrowingsScreenState extends ConsumerState<MyBorrowingsScreen>
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() {
-      // Rebuild so the pill row's highlight follows swipes, not just taps.
+
       if (!_tabController.indexIsChanging) setState(() {});
     });
   }
@@ -63,11 +63,25 @@ class _MyBorrowingsScreenState extends ConsumerState<MyBorrowingsScreen>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Couldn't load your borrowings", style: theme.textTheme.titleMedium),
-                const SizedBox(height: 16),
-                FilledButton(
+                Container(
+                  width: 96, height: 96,
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.errorContainer,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.cloud_off_outlined, size: 40, color: theme.colorScheme.error),
+                ),
+                const SizedBox(height: 20),
+                Text("Couldn't load your borrowings", style: theme.textTheme.titleLarge),
+                const SizedBox(height: 8),
+                Text('Something went wrong.',
+                    style: theme.textTheme.bodyMedium
+                        ?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                const SizedBox(height: 20),
+                FilledButton.icon(
+                  icon: const Icon(Icons.refresh_outlined),
                   onPressed: () => ref.invalidate(myBorrowingsProvider),
-                  child: const Text('Retry'),
+                  label: const Text('Retry'),
                 ),
               ],
             ),
@@ -159,7 +173,38 @@ class _MyBorrowingsScreenState extends ConsumerState<MyBorrowingsScreen>
 
   Widget _list(List<BorrowingDetails> details, ThemeData theme) {
     if (details.isEmpty) {
-      return Center(child: Text('No borrowings here yet', style: theme.textTheme.bodyLarge));
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 96, height: 96,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainerHigh,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(Icons.bookmark_border, size: 40, color: theme.colorScheme.primary),
+              ),
+              const SizedBox(height: 20),
+              Text("You haven't borrowed any books here",
+                  style: theme.textTheme.titleLarge, textAlign: TextAlign.center),
+              const SizedBox(height: 8),
+              Text('Borrowed books and history will appear here.',
+                  style: theme.textTheme.bodyMedium
+                      ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                  textAlign: TextAlign.center),
+              const SizedBox(height: 20),
+              FilledButton.icon(
+                icon: const Icon(Icons.explore_outlined),
+                onPressed: () => context.go('/books'),
+                label: const Text('Browse Books'),
+              ),
+            ],
+          ),
+        ),
+      );
     }
     return ListView.builder(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),

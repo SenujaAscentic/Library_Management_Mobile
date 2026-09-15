@@ -26,7 +26,7 @@ final class BorrowingsRepositoryProvider
         argument: null,
         retry: null,
         name: r'borrowingsRepositoryProvider',
-        isAutoDispose: false,
+        isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -55,7 +55,7 @@ final class BorrowingsRepositoryProvider
 }
 
 String _$borrowingsRepositoryHash() =>
-    r'28f68f7729c52fe5ade6b4ffd06dcf48e28102c5';
+    r'47a5e57d8cfa3570b2858ea842d5fa09da82c161';
 
 @ProviderFor(getMyBorrowingsUseCase)
 final getMyBorrowingsUseCaseProvider = GetMyBorrowingsUseCaseProvider._();

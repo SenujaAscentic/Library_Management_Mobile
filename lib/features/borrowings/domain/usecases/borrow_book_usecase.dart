@@ -4,6 +4,7 @@ import '../entities/borrowing.dart';
 import '../entities/borrowing_status.dart';
 import '../repositories/borrowings_repository.dart';
 import 'get_my_borrowings_usecase.dart';
+import 'package:flutter/foundation.dart';
 
 class BorrowBookUseCase {
   BorrowBookUseCase(this._repository, this._getBookById, this._getMyBorrowings);
@@ -20,9 +21,16 @@ class BorrowBookUseCase {
     }
 
     final existing = await _getMyBorrowings.call(memberId);
+    debugPrint('[BorrowLimit] Found ${existing.length} total borrowings for $memberId:');
+    for (final b in existing) {
+      debugPrint('[BorrowLimit]   id=${b.id} bookId=${b.bookId} status=${b.status}');
+    }
+
     final activeCount = existing
         .where((b) => b.status == BorrowingStatus.borrowed || b.status == BorrowingStatus.overdue)
         .length;
+    debugPrint('[BorrowLimit] activeCount=$activeCount (limit=$_borrowingLimit)');
+
     if (activeCount >= _borrowingLimit) {
       throw BorrowException(const BorrowFailure.limitExceeded());
     }

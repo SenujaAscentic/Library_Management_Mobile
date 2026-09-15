@@ -13,6 +13,8 @@ class BorrowConfirmationSheet extends ConsumerWidget {
   final Book book;
 
   static Future<void> show(BuildContext context, Book book) {
+    final container = ProviderScope.containerOf(context);
+    container.read(borrowConfirmationProvider.notifier).reset();
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -36,7 +38,7 @@ class BorrowConfirmationSheet extends ConsumerWidget {
         final borrowing = next.value!;
         Navigator.of(context).pop();
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => BorrowSuccessScreen(bookTitle: book.title, dueDate: borrowing.dueDate),
+          builder: (_) => BorrowSuccessScreen(book:book, dueDate: borrowing.dueDate),
         ));
         ref.read(borrowConfirmationProvider.notifier).reset();
       }

@@ -8,12 +8,11 @@ import '../../domain/repositories/borrowings_repository.dart';
 import '../../domain/usecases/get_my_borrowings_usecase.dart';
 import '../../domain/usecases/get_my_borrowings_with_details_usecase.dart';
 import '../../domain/usecases/return_borrowing_usecase.dart';
-import '../../../../shared/fakes/fake_data_store.dart';
-import '../../../books/presentation/providers/books_providers.dart';
+
 
 part 'borrowings_providers.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 BorrowingsRepository borrowingsRepository(Ref ref) {
   return FakeBorrowingsRepository(ref.watch(fakeDataStoreProvider));
 }
