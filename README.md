@@ -1,10 +1,12 @@
 # library_management_app
 
-A Flutter mobile client for a Library Management System, built with Clean Architecture and Riverpod . Member facing features only  no admin functionality.
+A Flutter mobile client for a Library Management System, 
+- built with Clean Architecture and Riverpod .
+- - Member facing features only  no admin functionality.
 
 # Need to implement
 - Global error handling
 - backend integration
-Pagination in book list
-fake login accepts any non empty passwords
-dark mode not implemented
+- Pagination in book list
+- fake login accepts any non empty passwords
+- dark mode not implemented
