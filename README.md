@@ -12,5 +12,5 @@ A Flutter mobile client for a Library Management System,
 - dark mode not implemented
 - UI enhancement
 
-<video src="VID_20260917104435.mp4" controls width="100%"></video>
+<video src="screenRecording/VID_20260917104435.mp4" controls width="100%"></video>
   
