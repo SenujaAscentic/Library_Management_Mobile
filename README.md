@@ -10,4 +10,7 @@ A Flutter mobile client for a Library Management System,
 - Pagination in book list
 - fake login accepts any non empty passwords
 - dark mode not implemented
-- - UI enhancement
+- UI enhancement
+
+<video src="VID_20260917104435.mp4" controls width="100%"></video>
+  
